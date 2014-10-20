@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title> - jsFiddle demo</title>
+  
+  <script type='text/javascript' src='//code.jquery.com/jquery-1.11.0.js'></script>
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  <script type='text/javascript' src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <style type='text/css'>
+  </style>
+<script type='text/javascript'>
+$(window).load(function(){
+$('form').validate({
+    rules: {
+        name: {
+            minlength: 3,
+            maxlength: 35,
+            required: true
+        },
+        phone: {
+            minlength: 9,
+            maxlength: 10,
+            required: true
+        },
+        website: {
+            required: true,
+            url: true
+        },
+        contact: {
+            required: true,
+            minlength: 2
+        }
+    },
+    highlight: function (element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function (element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function (error, element) {
+        if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (form) {
+        var name = $(".name").val();
+        var phone = $(".phone").val();
+        var website = $(".website").val();
+        var contact = $(".contact").val();
+        localStorage.setItem('name', name);
+        localStorage.setItem('phone', phone);
+        localStorage.setItem('website', website);
+        localStorage.setItem('contact', contact);
+        return false;
+    }
+    });
+});
+
+</script>
+
+
+</head>
+<body>
+  <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Add Publisher</div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <form>
+                            <div class="form-group col-lg-6">
+                                <label class="control-label" for="name">Publisher Name:</label>
+                                <div class="input-group">
+                                    <input class="form-control name" placeholder="Publisher Name" name="name" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="control-label" for="phone">Phone:</label>
+                                <div class="input-group">
+                                    <input class="form-control phone" placeholder="Phone" name="phone" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="control-label" for="website">Website:</label>
+                                <div class="input-group">
+                                    <input class="form-control website" placeholder="website" name="website" type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="control-label" for="contact">Contact:</label>
+                                <div class="input-group">
+                                    <input class="form-control contact" placeholder="Point of Contact" name="contact" type="text" />
+                                </div>
+                            </div>
+                            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+  
+</body>
+
+
+</html>
